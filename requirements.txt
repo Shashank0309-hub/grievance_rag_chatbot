@@ -1,0 +1,9 @@
+fastapi==0.111.0
+pydantic==2.10.3
+uvicorn==0.21.0
+starlette>=0.37.2,<0.38.0
+loguru==0.5.3
+mistralai==1.8.2
+pymongo==4.13.0
+passlib==1.7.4
+bcrypt==4.3.0
