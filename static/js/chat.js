@@ -89,5 +89,5 @@ userInput.addEventListener('keypress', (e) => {
 
 // Initial welcome message
 setTimeout(() => {
-    addMessage("Hello! How can I assist you today?");
+    addMessage("Hi! I am your Grievance AI Chatbot. How can I assist you today?");
 }, 500);
