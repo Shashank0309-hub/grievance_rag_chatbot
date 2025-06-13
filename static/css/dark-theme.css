@@ -2,17 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --bg-color: #121212;
-    --card-bg: #1e1e1e;
-    --text-primary: #e1e1e1;
-    --text-secondary: #a0a0a0;
+    --bg-color: #0d0b1f;
+    --card-bg: #1e2029;
+    --text-primary: #e4e4f0;
+    --text-secondary: #999ab0;
     --accent-color: #7c4dff;
-    --accent-hover: #9a67ff;
-    --user-message-bg: #6200ee;
-    --bot-message-bg: #2d2d2d;
-    --input-bg: #2d2d2d;
-    --border-color: #3a3a3a;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+    --accent-hover: #a678ff;
+    --user-message-bg: #6a4cff;
+    --bot-message-bg: #2a2a3d;
+    --input-bg: #2a2a3d;
+    --border-color: #3a3a4a;
+    --shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -23,7 +23,11 @@
 }
 
 body {
-    background-color: var(--bg-color);
+    background: radial-gradient(ellipse at top left, #1a1638 0%, transparent 60%),
+                radial-gradient(ellipse at top right, #1a1638 0%, transparent 60%),
+                #0b0b0d;
+    background-repeat: no-repeat;
+    background-size: cover;
     color: var(--text-primary);
     height: 100vh;
     display: flex;
@@ -37,7 +41,7 @@ body {
     width: 100%;
     max-width: 500px;
     height: 90vh;
-    background: var(--card-bg);
+    background: #1a1c24;
     border-radius: 16px;
     box-shadow: var(--shadow);
     display: flex;
@@ -48,12 +52,12 @@ body {
 }
 
 .chat-header {
-    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+    background: linear-gradient(135deg, var(--accent-color), #1a1638);
     color: white;
     padding: 18px 20px;
     text-align: center;
     position: relative;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .chat-header h1 {
@@ -114,12 +118,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;  /* Adjust icon size */
-    color: white;     /* Icon color */
+    font-size: 16px;
+    color: white;
 }
 
 .user-avatar {
-    background-color: #7c4dff;
+    background-color: var(--accent-color);
 }
 
 .bot-avatar {
@@ -137,11 +141,8 @@ body {
     align-self: flex-end;
     background: var(--user-message-bg);
     color: white;
-    border-bottom-right-radius: 4px;
-    border-top-right-radius: 16px;
-    border-top-left-radius: 16px;
-    border-bottom-left-radius: 16px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 20px 4px 20px 20px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
     margin-left: auto;
 }
 
@@ -149,11 +150,8 @@ body {
     align-self: flex-start;
     background: var(--bot-message-bg);
     color: var(--text-primary);
-    border-bottom-left-radius: 4px;
-    border-top-right-radius: 16px;
-    border-top-left-radius: 4px;
-    border-bottom-right-radius: 16px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px 20px 20px 20px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
     margin-right: auto;
 }
 
@@ -170,7 +168,7 @@ body {
     padding: 12px 20px;
     background: var(--input-bg);
     border: 1px solid var(--border-color);
-    border-radius: 24px;
+    border-radius: 12px;
     outline: none;
     font-size: 0.95rem;
     color: var(--text-primary);
@@ -193,7 +191,7 @@ body {
     background: var(--accent-color);
     color: white;
     border: none;
-    border-radius: 24px;
+    border-radius: 12px;
     cursor: pointer;
     font-weight: 500;
     transition: all 0.2s ease;
