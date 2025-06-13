@@ -75,6 +75,11 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 The API will be available at 🔗 `http://127.0.0.1:8000`
 
+## 🌐 Live Demo
+
+The application is deployed and available at: [https://grievance-rag-chatbot.onrender.com/](https://grievance-rag-chatbot.onrender.com/)
+
+
 ## 📚 API Documentation
 
 Once the server is running, you can access the interactive API documentation at:
