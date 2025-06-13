@@ -19,6 +19,7 @@ async def create_complaint(complaint: ComplaintRequest) -> dict:
         "name": complaint_data.get("name", "").strip().lower(),
         "mobile_number": complaint_data.get("mobile_number", "").strip().lower(),
         "status": ComplaintStatus.OPEN.value,
+        "resolver_comment": None,
     })
 
     try:
@@ -34,10 +35,24 @@ async def create_complaint(complaint: ComplaintRequest) -> dict:
         )
 
 
-async def get_complaint(complaint_id: Optional[str] = None, session_id: Optional[str] = None, mobile_number: Optional[str] = None):
+async def get_complaint(complaint_id: Optional[str] = None, session_id: Optional[str] = None,
+                        mobile_number: Optional[str] = None):
     complaint = await grievance_db.get_complaint(complaint_id, session_id, mobile_number)
 
     if complaint and isinstance(complaint, dict) and complaint != {}:
         return ComplaintResponse(**complaint)
 
     return None
+
+
+async def update_complaint_status(complaint_id: str, complaint_status: ComplaintStatus, resolver_comment: Optional[str] = None):
+    try:
+        message = await grievance_db.update_complaint_status(complaint_id, complaint_status.value, resolver_comment)
+        return {"message": message}
+
+    except Exception as e:
+        logger.exception(f"Failed to update complaint status: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="An error occurred while updating the complaint status. Please try again later."
+        )

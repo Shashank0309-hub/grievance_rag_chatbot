@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Optional
 
 from pydantic import BaseModel
 
@@ -26,3 +27,4 @@ class ComplaintRequest(BaseModel):
 class ComplaintResponse(ComplaintRequest):
     _id: str
     status: ComplaintStatus
+    resolver_comment: Optional[str] = None

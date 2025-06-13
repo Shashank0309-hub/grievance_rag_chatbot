@@ -4,6 +4,8 @@ from pymongo import MongoClient
 from pymongo.collection import Collection
 from pymongo.database import Database
 from app.core.config import EnvConfigs
+from app.schemas.complaints import ComplaintStatus
+
 
 class GrievanceDB:
     def __init__(self):
@@ -18,13 +20,36 @@ class GrievanceDB:
         if result.inserted_id:
             return str(result.inserted_id)
         raise Exception("Failed to create complaint")
-    
-    async def get_complaint(self, complaint_id: Optional[str] = None, session_id: Optional[str] = None, mobile_number: Optional[str] = None) -> Optional[Dict[str, Any]]:
+
+    async def get_complaint(self, complaint_id: Optional[str] = None, session_id: Optional[str] = None,
+                            mobile_number: Optional[str] = None) -> Optional[Dict[str, Any]]:
         if session_id:
             return self.complaints_collection.find({"session_id": session_id})
         if complaint_id:
             return self.complaints_collection.find_one({"_id": complaint_id.upper(), "mobile_number": mobile_number})
         raise ValueError("Either complaint_id or session_id must be provided")
+
+    async def update_complaint_status(
+            self, complaint_id: str, status: ComplaintStatus, resolver_comment: Optional[str] = None
+    ) -> dict:
+        update_fields = {"status": status}
+
+        if resolver_comment:
+            update_fields["resolver_comment"] = resolver_comment
+
+        result = self.complaints_collection.update_one(
+            {"_id": complaint_id},
+            {"$set": update_fields}
+        )
+
+        if result.modified_count == 1:
+            return {
+                "message": f"Complaint status updated successfully for complaint ID: {complaint_id} to {status.replace('_', ' ').title()}"
+            }
+        else:
+            return {
+                "message": f"Complaint status not updated for complaint ID: {complaint_id}"
+            }
 
     async def create_chat_history(self, chat_history: Dict[str, Any]) -> str:
         chat_history["created_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -51,5 +76,6 @@ class GrievanceDB:
 
     def close(self):
         self.client.close()
+
 
 grievance_db = GrievanceDB()
