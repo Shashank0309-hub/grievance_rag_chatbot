@@ -10,21 +10,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-header">
-            <h1>Grievance AI Chat</h1>
-        </div>
-        <div id="chat-messages" class="chat-messages">
-            <div class="typing-indicator" id="typing-indicator">
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
+    <div class="wrapper">
+        <div class="chat-container">
+            <div class="chat-header">
+                <h1>Grievance AI Chat</h1>
+            </div>
+            <div id="chat-messages" class="chat-messages">
+                <div class="typing-indicator" id="typing-indicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Type your message..." autofocus>
+                <button id="send-button">Send</button>
             </div>
         </div>
-        <div class="chat-input">
-            <input type="text" id="user-input" placeholder="Type your message..." autofocus>
-            <button id="send-button">Send</button>
-        </div>
+        <footer class="app-footer">
+            <div class="footer-content">
+                <span>© 2025 Grievance AI Chatbot by Shashank</span>
+                <a href="https://github.com/Shashank0309-hub/grievance_rag_chatbot" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i> GitHub Repository
+                </a>
+            </div>
+        </footer>
     </div>
     <script src="/static/js/chat.js"></script>
 </body>
