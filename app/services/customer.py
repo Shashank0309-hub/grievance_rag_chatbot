@@ -52,6 +52,7 @@ class CustomerService:
                 name=name,
                 mobile_number=mobile_number
             ))
+            chat_response['message'] = f"{intent.response} {chat_response['message']}"
             await self._dump_chat_history(session_id, query, chat_response["message"])
             return {"response": chat_response["message"]}
 
