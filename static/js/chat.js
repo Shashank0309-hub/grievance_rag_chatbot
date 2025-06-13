@@ -9,16 +9,45 @@ const typingIndicator = document.getElementById('typing-indicator');
 
 // Function to add a message to the chat
 function addMessage(content, isUser = false) {
+    const messageContainer = document.createElement('div');
+    messageContainer.className = 'message-container';
+    
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
     messageDiv.textContent = content;
+    
+    const avatar = document.createElement('div');
+    avatar.className = `avatar ${isUser ? 'user-avatar' : 'bot-avatar'}`;
+    
+    // Create icon element
+    const icon = document.createElement('i');
+    
+    if (isUser) {
+        // User avatar
+        icon.className = 'fas fa-user';
+    } else {
+        // Bot avatar
+        icon.className = 'fas fa-robot';
+    }
+    
+    // Add the icon to the avatar container
+    avatar.appendChild(icon);
+    
+    // Add avatar before or after message based on user/bot
+    if (isUser) {
+        messageContainer.appendChild(messageDiv);
+        messageContainer.appendChild(avatar);
+    } else {
+        messageContainer.appendChild(avatar);
+        messageContainer.appendChild(messageDiv);
+    }
     
     // Remove typing indicator if it's a bot message
     if (!isUser && typingIndicator.style.display === 'flex') {
         typingIndicator.style.display = 'none';
     }
     
-    chatMessages.insertBefore(messageDiv, typingIndicator);
+    chatMessages.insertBefore(messageContainer, typingIndicator);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
