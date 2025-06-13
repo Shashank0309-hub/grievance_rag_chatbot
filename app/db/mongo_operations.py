@@ -23,7 +23,7 @@ class GrievanceDB:
         if session_id:
             return self.complaints_collection.find({"session_id": session_id})
         if complaint_id:
-            return self.complaints_collection.find_one({"_id": complaint_id, "mobile_number": mobile_number})
+            return self.complaints_collection.find_one({"_id": complaint_id.upper(), "mobile_number": mobile_number})
         raise ValueError("Either complaint_id or session_id must be provided")
 
     async def create_chat_history(self, chat_history: Dict[str, Any]) -> str:
