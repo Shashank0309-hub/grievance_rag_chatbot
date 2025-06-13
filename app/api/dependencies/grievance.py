@@ -34,8 +34,8 @@ async def create_complaint(complaint: ComplaintRequest) -> dict:
         )
 
 
-async def get_complaint(complaint_id: Optional[str] = None, session_id: Optional[str] = None):
-    complaint = await grievance_db.get_complaint(complaint_id, session_id)
+async def get_complaint(complaint_id: Optional[str] = None, session_id: Optional[str] = None, mobile_number: Optional[str] = None):
+    complaint = await grievance_db.get_complaint(complaint_id, session_id, mobile_number)
 
     if complaint and isinstance(complaint, dict) and complaint != {}:
         return ComplaintResponse(**complaint)

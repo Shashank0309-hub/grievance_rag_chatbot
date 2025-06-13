@@ -19,11 +19,11 @@ class GrievanceDB:
             return str(result.inserted_id)
         raise Exception("Failed to create complaint")
     
-    async def get_complaint(self, complaint_id: Optional[str] = None, session_id: Optional[str] = None) -> Optional[Dict[str, Any]]:
+    async def get_complaint(self, complaint_id: Optional[str] = None, session_id: Optional[str] = None, mobile_number: Optional[str] = None) -> Optional[Dict[str, Any]]:
         if session_id:
             return self.complaints_collection.find({"session_id": session_id})
         if complaint_id:
-            return self.complaints_collection.find_one({"_id": complaint_id})
+            return self.complaints_collection.find_one({"_id": complaint_id, "mobile_number": mobile_number})
         raise ValueError("Either complaint_id or session_id must be provided")
 
     async def create_chat_history(self, chat_history: Dict[str, Any]) -> str:
