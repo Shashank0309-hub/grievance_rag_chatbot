@@ -45,7 +45,8 @@ async def get_complaint(complaint_id: Optional[str] = None, session_id: Optional
     return None
 
 
-async def update_complaint_status(complaint_id: str, complaint_status: ComplaintStatus, resolver_comment: Optional[str] = None):
+async def update_complaint_status(complaint_id: str, complaint_status: ComplaintStatus,
+                                  resolver_comment: Optional[str] = None):
     try:
         message = await grievance_db.update_complaint_status(complaint_id, complaint_status.value, resolver_comment)
         return {"message": message}
