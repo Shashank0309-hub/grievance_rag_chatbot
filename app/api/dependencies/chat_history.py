@@ -11,6 +11,7 @@ async def post_chat_history(chat: ChatHistoryRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to save chat history: {e}")
 
+
 async def get_chat_history(session_id: str):
     try:
         chat_history = await grievance_db.get_chat_history(session_id)
