@@ -78,7 +78,7 @@ The API will be available at 🔗 `http://127.0.0.1:8000`
 ## 🌐 Live Demo
 
 The application is deployed and available at: [https://grievance-rag-chatbot.onrender.com/](https://grievance-rag-chatbot.onrender.com/)
-
+> Note: It may take up to 1 minute to bring the service up as Render.com sets the state to sleep due to 15 minutes of inactivity.
 
 ## 📚 API Documentation
 
