@@ -49,7 +49,7 @@ async def update_complaint_status(complaint_id: str, complaint_status: Complaint
                                   resolver_comment: Optional[str] = None):
     try:
         message = await grievance_db.update_complaint_status(complaint_id, complaint_status.value, resolver_comment)
-        return {"message": message}
+        return message
 
     except Exception as e:
         logger.exception(f"Failed to update complaint status: {e}")
